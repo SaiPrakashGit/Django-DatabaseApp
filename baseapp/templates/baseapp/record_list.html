@@ -1,0 +1,63 @@
+{% extends 'baseapp/main.html' %} {% block content %}
+
+<div>
+  {% if request.user.is_authenticated %}
+  <h4>Hello, Database Administrator</h4>
+  <br />
+  <p>Logged in as '<b>{{ request.user }}</b>'</p>
+  <a href="{% url 'logout' %}"
+    ><button class="btn btn-outline-secondary btn-sm">Logout</button></a
+  >
+  {% else %}
+  <a href="{% url 'login' %}"><button class="btn btn-primary">Login</button></a>
+  {% endif %}
+</div>
+<hr />
+
+<div class="search-create search-wrapper">
+  <div class="search-form">
+    <form method="GET" autocomplete="off">
+      <input
+        type="text"
+        placeholder="Reg. No (or) Name"
+        name="search-data"
+        value="{{ search_input }}"
+      />
+      <input type="Submit" value="SEARCH" class="btn btn-info btn-sm" />
+    </form>
+  </div>
+  <div class="create-record-button">
+    <a href="{% url 'record-create' %}"
+      ><button class="btn btn-success btn-sm">Create New Record</button></a
+    >
+  </div>
+</div>
+<hr />
+<div class="records-container">
+  {% for record in records %}
+  <div class="record-container record-wrapper">
+    <div class="record-details">{{ record.reg_no }} - {{ record.name }}</div>
+    <div class="button-outer-container">
+      <div class="button-container">
+        <div class="my-btn">
+          <a href="{% url 'record' record.id %}"
+            ><button class="btn btn-outline-primary btn-sm">View</button></a
+          >
+        </div>
+        <div class="my-btn">
+          <a href="{% url 'record-update' record.id %}"
+            ><button class="btn btn-outline-warning btn-sm">Edit</button></a
+          >
+        </div>
+        <div class="my-btn">
+          <a href="{% url 'record-delete' record.id %}"
+            ><button class="btn btn-outline-danger btn-sm">Delete</button></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  {% endfor %}
+</div>
+{% endblock content %}

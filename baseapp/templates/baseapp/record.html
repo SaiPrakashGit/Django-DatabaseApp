@@ -1,0 +1,11 @@
+{% extends 'baseapp/main.html' %} {% block content %}
+<a href="{% url 'records' %}"
+  ><button class="btn btn-outline-warning btn-sm">Go Back</button></a
+>
+<hr />
+<h6>Name : {{ record.name }}</h6>
+<h6>Reg. No : {{ record.reg_no }}</h6>
+<h6>Mobile No : {{ record.mobile_no }}</h6>
+<h6>Address : {{ record.address }}</h6>
+<h6>Grad. Year : {{ record.grad_year }}</h6>
+{% endblock content %}

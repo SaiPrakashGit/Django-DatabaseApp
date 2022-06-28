@@ -1,0 +1,1 @@
+web: gunicorn dbadmin.wsgi:application --log-file -

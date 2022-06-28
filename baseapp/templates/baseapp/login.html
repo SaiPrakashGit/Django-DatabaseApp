@@ -1,0 +1,15 @@
+{% extends 'baseapp/main.html' %} {% block content %}
+
+<div>
+  <h1>DATABASE ADMIN LOGIN</h1>
+  <br />
+  <p>Username : admin</p>
+  <p>Password : admin@1234</p>
+  <hr />
+  <form method="POST">
+    {% csrf_token %} {{ form.as_p }}
+    <input type="Submit" value="Login" class="btn btn-outline-primary btn-sm" />
+  </form>
+</div>
+
+{% endblock content %}
